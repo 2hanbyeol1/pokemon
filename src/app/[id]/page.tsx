@@ -24,7 +24,7 @@ async function DetailPage({ params }: DetailPageProps) {
         <div className="flex flex-col items-center">
           <div className="w-60 relative aspect-square">
             <Image
-              className="animate-bounce object-cover hover:animate-shake"
+              className="object-cover"
               src={pokemon.sprites.front_default}
               alt={pokemon.korean_name}
               fill
