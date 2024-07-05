@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { MouseEvent, useRef } from "react";
+import { toast } from "react-toastify";
 
 interface PokemonCardType {
   pokemon: Pokemon;
@@ -16,10 +17,16 @@ function PokemonCard({ pokemon }: PokemonCardType) {
     startShaking();
   };
 
+  let timeoutId: string | number | NodeJS.Timeout | undefined = undefined;
+
   const playCryAudio = () => {
     if (audioRef && audioRef.current) {
       audioRef.current.volume = 0.1;
       audioRef?.current?.play();
+      timeoutId = setTimeout(() => {
+        navigateToDetailPage();
+        toast.warning("음원이 없거나 길어 자동으로 세부 페이지로 이동합니다");
+      }, 2500);
     }
   };
 
@@ -28,6 +35,7 @@ function PokemonCard({ pokemon }: PokemonCardType) {
   };
 
   const navigateToDetailPage = () => {
+    clearInterval(timeoutId);
     router.push(`/${pokemon.id}`);
   };
 
