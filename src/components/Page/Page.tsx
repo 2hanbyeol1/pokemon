@@ -8,7 +8,7 @@ const pageVariants = cva("mx-auto px-4", {
       sm: "max-w-[624px]",
     },
     centered: {
-      true: "h-screen flex items-center",
+      true: "h-screen flex justify-center items-center",
       false: "",
     },
     relative: {
