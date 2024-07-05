@@ -55,7 +55,7 @@ function PokemonCard({ pokemon, isClicked, handleClick }: PokemonCardType) {
       onClick={handleCardClick}
     >
       <audio ref={audioRef} onEnded={handleAudioEnded}>
-        <source src={pokemon.cries.legacy} type="audio/ogg" />
+        <source src={pokemon.cries.latest} type="audio/ogg" />
       </audio>
       <div className="w-full">
         <div>
@@ -86,7 +86,6 @@ function PokemonCard({ pokemon, isClicked, handleClick }: PokemonCardType) {
             </div>
           </div>
         </div>
-        <div></div>
       </div>
     </li>
   );

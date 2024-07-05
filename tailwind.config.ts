@@ -13,6 +13,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      boxShadow: {
+        pixel:
+          "-3px 0 0 0 #434b4f, 3px 0 0 0 #434b4f, 0 -3px 0 0 #434b4f, 0 3px 0 0 #434b4f",
+      },
       keyframes: {
         shake: {
           "0%": { transform: "translate(1px, 1px) rotate(0deg)" },
@@ -37,10 +41,20 @@ const config: Config = {
             animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
           },
         },
+        appear: {
+          from: {
+            opacity: "0",
+          },
+          to: {
+            opacity: "1",
+          },
+        },
       },
       animation: {
         shake: "shake 1s ease-in-out infinite",
-        jump: "jump 1s infinite;",
+        shake1: "shake 1s ease-in-out",
+        jump: "jump 0.4s infinite;",
+        appear: "appear 0.01s linear",
       },
     },
   },

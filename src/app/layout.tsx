@@ -1,3 +1,4 @@
+import Provider from "@/components/Provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Bounce, ToastContainer } from "react-toastify";
@@ -19,20 +20,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
-        <ToastContainer
-          position="bottom-right"
-          autoClose={3500}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          transition={Bounce}
-        />
+        <Provider>
+          {children}
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
+        </Provider>
       </body>
     </html>
   );
