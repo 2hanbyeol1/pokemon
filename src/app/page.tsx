@@ -11,7 +11,7 @@ export default async function HomePage() {
 
   return (
     <Page>
-      <div className="fixed top-0 left-0 w-full flex justify-center text-center py-5 mb-5 border-b border-gray-200">
+      <div className="bg-white z-50 fixed top-0 left-0 w-full flex justify-center text-center py-3 border-b border-gray-200">
         <h1 className="text-2xl font-bold">포켓몬 도감</h1>
         <Image
           width={60}

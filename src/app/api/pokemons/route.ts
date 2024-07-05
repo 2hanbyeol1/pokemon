@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
 
-const TOTAL_POKEMON = 10;
+const TOTAL_POKEMON = 151;
 
 export const dynamic = "force-dynamic"; // defaults to auto
 
@@ -28,8 +28,6 @@ export const GET = async (request: Request) => {
         return { ...response.data, korean_name: koreanName?.name || null };
       }
     );
-
-    console.log(allPokemonData);
 
     return NextResponse.json(allPokemonData);
   } catch (error) {

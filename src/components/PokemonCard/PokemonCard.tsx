@@ -1,29 +1,34 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { MouseEvent, useRef } from "react";
+import { useRef } from "react";
 import { toast } from "react-toastify";
 
 interface PokemonCardType {
   pokemon: Pokemon;
+  isClicked: boolean;
+  handleClick: () => void;
 }
 
-function PokemonCard({ pokemon }: PokemonCardType) {
+type timeoutIdType = string | number | NodeJS.Timeout | undefined;
+
+function PokemonCard({ pokemon, isClicked, handleClick }: PokemonCardType) {
   const router = useRouter();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
+  const timeoutId = useRef<timeoutIdType>(undefined);
 
-  const handleCardClick = (e: MouseEvent<HTMLUListElement>) => {
+  const handleCardClick = () => {
+    if (isClicked) return;
+    handleClick();
     playCryAudio();
     startShaking();
   };
-
-  let timeoutId: string | number | NodeJS.Timeout | undefined = undefined;
 
   const playCryAudio = () => {
     if (audioRef && audioRef.current) {
       audioRef.current.volume = 0.1;
       audioRef?.current?.play();
-      timeoutId = setTimeout(() => {
+      timeoutId.current = setTimeout(() => {
         navigateToDetailPage();
         toast.warning("음원이 없거나 길어 자동으로 세부 페이지로 이동합니다");
       }, 2500);
@@ -34,18 +39,22 @@ function PokemonCard({ pokemon }: PokemonCardType) {
     imageRef?.current?.classList.add("animate-shake");
   };
 
+  const handleAudioEnded = () => {
+    clearTimeout(timeoutId.current);
+    navigateToDetailPage();
+  };
+
   const navigateToDetailPage = () => {
-    clearInterval(timeoutId);
     router.push(`/${pokemon.id}`);
   };
 
   //
   return (
-    <ul
+    <li
       className="group bg-white rounded-lg w-full p-2 hover:shadow-md hover:z-10"
       onClick={handleCardClick}
     >
-      <audio ref={audioRef} onEnded={navigateToDetailPage}>
+      <audio ref={audioRef} onEnded={handleAudioEnded}>
         <source src={pokemon.cries.legacy} type="audio/ogg" />
       </audio>
       <div className="w-full">
@@ -79,7 +88,7 @@ function PokemonCard({ pokemon }: PokemonCardType) {
         </div>
         <div></div>
       </div>
-    </ul>
+    </li>
   );
 }
 
