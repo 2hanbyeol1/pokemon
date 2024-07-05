@@ -34,7 +34,7 @@ function ErrorPage({ error, reset }: ErrorPageType) {
           src={nurseImage}
           alt="간호순"
         />
-        <SpeechBubble>이런..! 뭔가 잘못됐어</SpeechBubble>
+        <SpeechBubble>뭔가 잘못된 것 같습니다!</SpeechBubble>
       </div>
       <Button intent="danger" onClick={handleButtonClicked} size="sm">
         다시 시도
