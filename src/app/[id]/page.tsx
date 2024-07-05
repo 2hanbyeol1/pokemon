@@ -59,7 +59,7 @@ async function DetailPage({ params }: DetailPageProps) {
           </div>
         </div>
         <div>
-          <h3 className="font-bold"># 능력</h3>
+          <h3 className="font-bold"># 기술</h3>
           <div className="flex flex-wrap gap-1 max-h-60 overflow-auto">
             {pokemon.moves.map((moveObj) => (
               <span key={moveObj.move.name}>{moveObj.move.korean_name}</span>
